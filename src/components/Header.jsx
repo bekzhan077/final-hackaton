@@ -9,7 +9,6 @@ function Header() {
 
   return (
     <div>
-      {" "}
       <div className="navbar">
         <div className="navbar-left">
           <h1>KAYAKTA</h1>
