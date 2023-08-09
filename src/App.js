@@ -1,12 +1,14 @@
+import { useEffect } from "react";
 import "./App.css";
 import MainRoutes from "./routes/MainRoutes";
+import { useAuthContext } from "./contexts/AuthContexts";
 
-function App() {
-  return (
-    <div className="App">
-      <MainRoutes />
-    </div>
-  );
-}
+const App = () => {
+  const { checkAuth } = useAuthContext();
+  useEffect(() => {
+    checkAuth();
+  }, []);
+  return <MainRoutes />;
+};
 
 export default App;

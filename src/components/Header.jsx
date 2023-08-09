@@ -1,7 +1,12 @@
 import React from "react";
 import "../components/Header.css";
 import logo from "./img/icons8-bucking-horse-100.png";
-const Header = () => {
+import { useAuthContext } from "../contexts/AuthContexts";
+import { Box, Button, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+function Header() {
+  const { user, logout } = useAuthContext();
+
   return (
     <div>
       {" "}
@@ -16,12 +21,23 @@ const Header = () => {
             <li>Tours</li>
             <li>About Us</li>
             <li>Contact us</li>
-            <li>Login</li>
+            {user ? (
+              <Box display="flex" alignItems="center" gap={1}>
+                <Typography>{user.email}</Typography>
+                <Button sx={{ color: "dark" }} onClick={logout}>
+                  Logout
+                </Button>
+              </Box>
+            ) : (
+              <Button component={Link} to="/auth" sx={{ color: "dark" }}>
+                Login
+              </Button>
+            )}
           </ul>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Header;
