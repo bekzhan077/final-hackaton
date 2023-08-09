@@ -8,13 +8,50 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: aliceblue;
+  background-color: rgba(255, 240, 240, 0.224);
+}
+
+.main {
+  display: flex;
+  align-items: center;
+}
+
+.hh-header {
+  padding: 50px;
+  width: 100px;
+}
+
+.h1-header {
+  /* padding: 50px; */
+  font-size: 70px;
+  color: rgb(255, 255, 255);
+}
+.h3-header {
+  font-size: 70px;
+  color: rgb(255, 255, 255);
+}
+
+.header-right {
+  width: 200px;
+  height: 200px; /* Добавляем высоту, чтобы создать квадрат */
+}
+
+.diamond-wrapper {
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg);
+  overflow: hidden;
+}
+
+.header-img {
+  max-width: 100%;
+  max-height: 100%;
+  transform: rotate(-45deg) scale(2.42);
 }
 
 .navbar-left {
   display: flex;
   font-family: "Sora", sans-serif;
-  color: #ef816c;
 }
 ul {
   display: flex;
@@ -34,7 +71,6 @@ li {
 }
 
 li:hover {
-  /* background-image: url("https://scottyzen.sirv.com/Images/v/button.png"); */
   background-size: 100% 100%;
   color: #27262c;
   animation: spring 300ms ease-out;
