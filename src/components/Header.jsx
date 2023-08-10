@@ -3,9 +3,10 @@ import "../components/Header.css";
 import logo from "./img/icons8-bucking-horse-100.png";
 import { useAuthContext } from "../contexts/AuthContexts";
 import { Box, Button, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Header() {
   const { user, logout } = useAuthContext();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -18,7 +19,7 @@ function Header() {
           <ul>
             <li>Home</li>
             <li>Tours</li>
-            <li>About Us</li>
+            <li onClick={() => navigate("/aboutus")}>About Us</li>
             <li>Add Tourse</li>
             {user ? (
               <Box display="flex" alignItems="center" gap={1}>
