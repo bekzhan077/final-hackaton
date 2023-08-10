@@ -17,7 +17,8 @@
 }
 
 .hh-header {
-  padding: 50px;
+  /* margin-bottom: -50px; */
+  padding: 80px;
   width: 100px;
 }
 
@@ -32,8 +33,24 @@
 }
 
 .header-right {
-  width: 200px;
-  height: 200px; /* Добавляем высоту, чтобы создать квадрат */
+  width: 180px;
+  height: 180px; /* Добавляем высоту, чтобы создать квадрат */
+}
+
+.block-1b {
+  margin-left: 35%;
+}
+
+.block-2b {
+  margin-bottom: 25%;
+}
+
+.block-3b {
+  /* margin-left: 2%; */
+}
+.block-4b {
+  margin-top: 22%;
+  margin-left: -25.5%;
 }
 
 .diamond-wrapper {
@@ -74,7 +91,7 @@ li:hover {
   background-size: 100% 100%;
   color: #27262c;
   animation: spring 300ms ease-out;
-  text-shadow: 0 -1px 0 #ff0c0c;
+  text-shadow: 0 -1px 0 black;
   font-weight: bold;
 }
 li:active {
@@ -107,4 +124,34 @@ li:active {
   padding: 8px 20px;
   color: #ccc;
   text-decoration: none;
+}
+
+.input {
+  max-width: 190px;
+  padding: 15px;
+  font-size: 17px;
+  color: black;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border: 2px solid #fff;
+  margin-right: -10px;
+}
+
+.button {
+  border: none;
+  background-color: #1363df;
+  text-decoration: none;
+  padding: 15px;
+  padding-bottom: 17px;
+  font-size: 17px;
+  color: #fff;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .navbar-right ul {
+    display: none;
+  }
 }
