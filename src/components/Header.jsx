@@ -19,7 +19,7 @@ function Header() {
             <li>Home</li>
             <li>Tours</li>
             <li>About Us</li>
-            <li>Contact us</li>
+            <li>Add Tourse</li>
             {user ? (
               <Box display="flex" alignItems="center" gap={1}>
                 <Typography>{user.email}</Typography>
