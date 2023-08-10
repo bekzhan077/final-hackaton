@@ -17,7 +17,7 @@ function Header() {
         </div>
         <div className="navbar-right">
           <ul>
-            <li>Home</li>
+            <li onClick={() => navigate("/")}>Home</li>
             <li>Tours</li>
             <li onClick={() => navigate("/aboutus")}>About Us</li>
             <li>Add Tourse</li>
