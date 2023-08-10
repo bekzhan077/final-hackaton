@@ -3,7 +3,7 @@ import React from "react";
 const AboutUsPage = () => {
   return (
     <div>
-      <h1>qwertyui</h1>
+      <h1></h1>
     </div>
   );
 };
