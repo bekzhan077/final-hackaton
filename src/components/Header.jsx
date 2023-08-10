@@ -11,7 +11,7 @@ function Header() {
     <div>
       <div className="navbar">
         <div className="navbar-left">
-          <h1>KAYAKTA</h1>
+          <h1 style={{ marginTop: "16px" }}>KAYAKTA</h1>
           <img width={70} src={logo} alt="" />
         </div>
         <div className="navbar-right">
