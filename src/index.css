@@ -10,6 +10,7 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   height: 100%;
+  background-color: rgba(169, 169, 169, 0.676);
 }
 
 code {
