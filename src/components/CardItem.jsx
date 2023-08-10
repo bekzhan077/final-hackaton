@@ -15,22 +15,6 @@ const CardItem = () => {
           width: "90%",
         }}
       >
-        <div className="main">
-          <div className="hh-header">
-            <h1 className="h1-header">Wheare to go!</h1>
-            <h3 className="h3-header">by regions</h3>
-          </div>
-          <div className="header-right">
-            <div className="diamond-wrapper">
-              <img
-                className="header-img"
-                src="https://bestway.kg/wp-content/uploads/2020/08/3-7.jpg"
-                alt=""
-              />
-            </div>
-          </div>
-        </div>
-
         <div className="cards">
           <div className="card">
             <img src="https://24.kg/files/media/35/35290.jpg" alt="" />

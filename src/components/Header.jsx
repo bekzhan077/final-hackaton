@@ -23,12 +23,31 @@ function Header() {
             {user ? (
               <Box display="flex" alignItems="center" gap={1}>
                 <Typography>{user.email}</Typography>
-                <Button sx={{ color: "dark" }} onClick={logout}>
+                <Button
+                  sx={{
+                    color: "red",
+                    backgroundColor: "green",
+                    borderRadius: "150px",
+                    height: "50px",
+                    width: "80px",
+                  }}
+                  onClick={logout}
+                >
                   Logout
                 </Button>
               </Box>
             ) : (
-              <Button component={Link} to="/auth" sx={{ color: "dark" }}>
+              <Button
+                component={Link}
+                to="/auth"
+                sx={{
+                  color: "white",
+                  backgroundColor: "green",
+                  borderRadius: "150px",
+                  height: "50px",
+                  width: "80px",
+                }}
+              >
                 Login
               </Button>
             )}
