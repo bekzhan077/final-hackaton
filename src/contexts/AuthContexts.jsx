@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 import { BASE_URL } from "../utils/consts";
 import $axios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../components/Toastify";
 
 const authContext = createContext();
 
@@ -24,9 +25,9 @@ const AuthContext = ({ children }) => {
         `${BASE_URL}/api/account/register/`,
         credentials
       );
-      console.log(res);
-    } catch (error) {
-      console.log(error);
+      notify("Succes");
+    } catch (e) {
+      notify(e.code.split("/")[1], "error");
     }
   }
 
@@ -42,9 +43,9 @@ const AuthContext = ({ children }) => {
 
       setUser(data);
 
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+      notify("Succes");
+    } catch (e) {
+      notify(e.code.split("/")[1], "error");
     }
   }
 
@@ -63,7 +64,7 @@ const AuthContext = ({ children }) => {
         setUser(null);
       }
     } catch (e) {
-      console.log(e);
+      notify(e.code.split("/")[1], "error");
     }
   }
 
@@ -73,10 +74,10 @@ const AuthContext = ({ children }) => {
         code,
       });
 
-      console.log(res, "code");
+      notify("Succes");
       navigate("/auth");
     } catch (e) {
-      console.log(e);
+      notify(e.code.split("/")[1], "error");
     }
   }
 
