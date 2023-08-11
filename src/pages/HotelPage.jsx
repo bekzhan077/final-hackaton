@@ -1,16 +1,15 @@
 import React from "react";
-import TourList from "../components/TourList";
-import { Box } from "@mui/material";
 import Header from "../components/Header";
-import "../styles/TourPage.css";
+import { Box } from "@mui/material";
+import HotelList from "../components/HotelList";
 
-const TourPage = () => {
+const HotelPage = () => {
   return (
     <Box>
       <Header />
       <div
         style={{
-          backgroundImage: `url("https://cdn.suwalls.com/wallpapers/nature/caravansary-on-silk-road-in-kyrgyzstan-41123-1920x1200.jpg")`,
+          backgroundImage: `url("https://media.gadventures.com/media-server/dynamic/blogs/posts/dan-audrey/2017/07/kyBurn.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -33,13 +32,12 @@ const TourPage = () => {
             textAlign: "center", //
           }}
         >
-          Choose your way
+          Choose where to sleep
         </p>
       </div>
-
-      <TourList />
+      <HotelList />
     </Box>
   );
 };
 
-export default TourPage;
+export default HotelPage;
