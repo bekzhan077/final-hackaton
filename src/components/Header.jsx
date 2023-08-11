@@ -19,8 +19,15 @@ function Header() {
           <ul>
             <li onClick={() => navigate("/")}>Home</li>
             <li>Tours</li>
+
+
+            <li>Hotels</li>
+            <li>About Us</li>
+            <li>Contact us</li>
+
             <li onClick={() => navigate("/aboutus")}>About Us</li>
             <li>Add Tourse</li>
+
             {user ? (
               <Box display="flex" alignItems="center" gap={1}>
                 <Typography>{user.email}</Typography>
