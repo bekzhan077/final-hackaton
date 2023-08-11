@@ -18,7 +18,22 @@ function Header() {
         <div className="navbar-right">
           <ul>
             <li>Home</li>
-            <li>Tours</li>
+            <li>
+              <Link
+                to="/tour"
+                style={{ color: "dark", textDecoration: "none" }}
+              >
+                Tours
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/hotel"
+                style={{ color: "dark", textDecoration: "none" }}
+              >
+                Hotels
+              </Link>
+            </li>
             <li>About Us</li>
             <li>Contact us</li>
             {user ? (
