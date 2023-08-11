@@ -9,7 +9,6 @@ function Header() {
 
   return (
     <div>
-      {" "}
       <div className="navbar">
         <div className="navbar-left">
           <h1>KAYAKTA</h1>
@@ -21,7 +20,7 @@ function Header() {
             <li>
               <Link
                 to="/tour"
-                style={{ color: "dark", textDecoration: "none" }}
+                style={{ color: "black", textDecoration: "none" }}
               >
                 Tours
               </Link>
@@ -29,7 +28,7 @@ function Header() {
             <li>
               <Link
                 to="/hotel"
-                style={{ color: "dark", textDecoration: "none" }}
+                style={{ color: "black", textDecoration: "none" }}
               >
                 Hotels
               </Link>
