@@ -1,1 +1,1 @@
-export const BASE_URL = "http://13.49.223.191";
+export const BASE_URL = "https://app.kayakta.pp.ua";

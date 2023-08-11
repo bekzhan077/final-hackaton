@@ -14,6 +14,10 @@ const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   async function register(credentials) {
     try {
       const res = await axios.post(
@@ -76,6 +80,32 @@ const AuthContext = ({ children }) => {
     }
   }
 
+  async function resetPassword(credentials) {
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/api/account/reset-password/`,
+        credentials
+      );
+
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function confirmPassword(obj, code) {
+    try {
+      const res = await axios.post(
+        `${BASE_URL}/api/account/reset-password/confirm/?u=${code}`,
+        obj
+      );
+      console.log(res);
+      navigate("/auth");
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const value = {
     user,
     register,
@@ -83,6 +113,11 @@ const AuthContext = ({ children }) => {
     logout,
     checkAuth,
     activateUser,
+    resetPassword,
+    open,
+    handleOpen,
+    handleClose,
+    confirmPassword,
   };
 
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
