@@ -10,7 +10,7 @@ import HotelPage from "../pages/HotelPage";
 import ResetPassPage from "../pages/ResetPassPage";
 
 import AboutUsPage from "../pages/AboutUsPage";
-
+import AddTourPage from "../pages/AddTourPage";
 
 const MainRoutes = () => {
   return (
@@ -18,11 +18,11 @@ const MainRoutes = () => {
       <Route element={<MainLayouts />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
+        <Route path="/add" element={<AddTourPage />} />
       </Route>
       <Route path="/auth" element={<AuthPage />} />
       <Route path="/hotel" element={<HotelPage />} />
-
-      <Route path="/tour" element={<TourPage />}></Route>
+      <Route path="/tour" element={<TourPage />} />
       <Route path="/api/account/activate/" element={<ActivationPage />} />
       <Route
         path="/api/account/reset-password/confirm/"
