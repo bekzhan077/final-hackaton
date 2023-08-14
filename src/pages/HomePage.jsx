@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardList from "../components/CardList";
 
+
 const HomePage = () => {
+  
   return (
+
     <div>
+
+  
+
+
       <CardList />
     </div>
   );
