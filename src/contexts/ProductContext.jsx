@@ -56,8 +56,16 @@ const ProductContext = ({ children }) => {
   }
 
   async function getCategories() {
+    const token = JSON.parse(localStorage.getItem("tokens"));
     try {
-      const { data } = await $axios.get(`${BASE_URL}/category/`);
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token.access}`,
+        },
+      };
+
+      const { data } = await $axios.get(`${BASE_URL}/category/`, config);
       dispatch({
         type: "categories",
         payload: data.results,

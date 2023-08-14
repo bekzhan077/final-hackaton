@@ -6,9 +6,7 @@ import AuthPage from "../pages/AuthPage";
 import ActivationPage from "../pages/ActivationPage";
 import TourPage from "../pages/TourPage";
 import HotelPage from "../pages/HotelPage";
-
 import ResetPassPage from "../pages/ResetPassPage";
-
 import AboutUsPage from "../pages/AboutUsPage";
 import AddTourPage from "../pages/AddTourPage";
 
@@ -18,7 +16,7 @@ const MainRoutes = () => {
       <Route element={<MainLayouts />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
-        <Route path="/add" element={<AddTourPage />} />
+        {/* <Route path="/add" element={<AddTourPage />} /> */}
       </Route>
       <Route path="/auth" element={<AuthPage />} />
       <Route path="/hotel" element={<HotelPage />} />
