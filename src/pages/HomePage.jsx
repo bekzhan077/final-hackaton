@@ -3,7 +3,7 @@ import CardList from "../components/CardList";
 
 const HomePage = () => {
   return (
-    <div className="wrapper">
+    <div>
       <CardList />
     </div>
   );
