@@ -12,6 +12,7 @@ import ResetPassPage from "../pages/ResetPassPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import WelcomePage from "../pages/WelcomePage";
 import DetailPage from "../pages/DetailPage";
+import AddTourPage from "../pages/AddTourPage";
 
 const MainRoutes = () => {
   return (
@@ -19,7 +20,7 @@ const MainRoutes = () => {
       <Route element={<MainLayouts />}>
         <Route path="/home" element={<HomePage />} />
         <Route path="/detail" element={<DetailPage />} />
-
+        <Route path="/add" element={<AddTourPage />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
       </Route>
       <Route path="/" element={<WelcomePage />} />
