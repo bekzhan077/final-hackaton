@@ -1,14 +1,12 @@
 import React from "react";
-import video from "../assets/video.mp4";
+
 import { Button } from "@mui/base";
 import "../styles/WelcomePage.css";
 
 const WelcomePage = () => {
   return (
     <div className="home">
-      <div className="overplay">
-        <video src={video} autoPlay loop muted />
-      </div>
+      <div className="overplay"></div>
 
       <div className="content">
         <p>Welcome</p>
