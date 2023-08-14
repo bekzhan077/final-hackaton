@@ -1,6 +1,4 @@
 import React from "react";
-
-import { Button } from "@mui/base";
 import "../styles/WelcomePage.css";
 
 const WelcomePage = () => {

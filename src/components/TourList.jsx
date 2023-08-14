@@ -14,7 +14,6 @@ const TourList = () => {
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
-        // flexDirection: "row",
       }}
       className="wrapper"
     >

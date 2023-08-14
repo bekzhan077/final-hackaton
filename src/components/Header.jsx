@@ -1,23 +1,73 @@
 import * as React from "react";
+import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+
+import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import NightShelterIcon from "@mui/icons-material/NightShelter";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import ExploreIcon from "@mui/icons-material/Explore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { useNavigate } from "react-router";
 
-export default function Header() {
+import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
+import { Typography } from "@mui/material";
+import HotelPage from "../pages/HotelPage";
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: "100px 10px 100px 10px",
+
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: "80%",
+
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(3),
+    width: "80%",
+    borderRadius: "100px 10px 100px 10px",
+  },
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "90%",
+    },
+  },
+}));
+
+export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
   const navigate = useNavigate();
 
   const isMenuOpen = Boolean(anchorEl);
@@ -79,37 +129,7 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <NightShelterIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <ExploreIcon />
-          </Badge>
-        </IconButton>
-        <p>ooo</p>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <FavoriteIcon />
-          </Badge>
-        </IconButton>
-        <p>ooo</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      <MenuItem onClick={() => navigate("/")}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -121,16 +141,93 @@ export default function Header() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+      <MenuItem onClick={() => navigate("/hotel")}>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <NightShelterIcon />
+          </Badge>
+        </IconButton>
+        <p>Hotels</p>
+      </MenuItem>
+      <MenuItem onClick={() => navigate("/tour")}>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
+            <ExploreIcon />
+          </Badge>
+        </IconButton>
+        <p>Tours</p>
+      </MenuItem>
+      <MenuItem onClick={() => navigate("/")}>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
+            <FavoriteIcon />
+          </Badge>
+        </IconButton>
+        <p>Favorite</p>
+      </MenuItem>
+      <MenuItem onClick={() => navigate("/add")}>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <AddCircleIcon />
+          </Badge>
+        </IconButton>
+        <p>Add</p>
+      </MenuItem>
     </Menu>
   );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "#0b8a4a",
+        }}
+      >
         <Toolbar>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: { xs: "none", sm: "block" } }}
+          >
+            <img
+              style={{ width: "50px" }}
+              src="https://freepngimg.com/thumb/sunrise/33996-5-sunrise-clipart-thumb.png"
+              alt=""
+            />
+          </Typography>
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
+              onClick={() => navigate("/add")}
+              size="large"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
+              <Badge badgeContent={4} color="error">
+                <AddCircleIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              onClick={() => navigate("/")}
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
@@ -140,6 +237,7 @@ export default function Header() {
               </Badge>
             </IconButton>
             <IconButton
+              onClick={() => navigate("/tour")}
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
@@ -148,16 +246,9 @@ export default function Header() {
                 <ExploreIcon />
               </Badge>
             </IconButton>
+
             <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <AddCircleIcon onClick={() => navigate("/add")} />
-              </Badge>
-            </IconButton>
-            <IconButton
+              onClick={() => navigate("/hotel")}
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
@@ -170,11 +261,7 @@ export default function Header() {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            ></IconButton>
             <IconButton
               size="large"
               edge="end"

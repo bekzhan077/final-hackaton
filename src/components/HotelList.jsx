@@ -15,7 +15,6 @@ const HotelList = () => {
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
-        // flexDirection: "row",
       }}
       className="wrapper"
     >

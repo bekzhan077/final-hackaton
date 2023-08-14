@@ -1,16 +1,15 @@
 import React from "react";
-
 const CardItem = () => {
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "center",
+        marginTop: "2vw",
       }}
     >
       <div
         style={{
-          //   border: "1px solid red",
           borderRadius: "30px",
           width: "90%",
         }}
