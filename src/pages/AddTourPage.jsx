@@ -1,4 +1,4 @@
-import { Button, FormControl, Select } from "@mui/base";
+
 import {
   CssBaseline,
   InputLabel,
@@ -96,7 +96,11 @@ const AddTourPage = () => {
             </Typography>
             <Box
               component="form"
+
+              // onSubmit={handleSubmit}
+
               onSubmit={handleSubmit}
+
               noValidate
               sx={{ mt: 1 }}
             >
@@ -107,17 +111,28 @@ const AddTourPage = () => {
                 label="Title"
                 name="title"
                 autoFocus
+
+                // value={formValue.title}
+                // onChange={handleChange}
+
                 value={formValue.title}
                 onChange={handleChange}
+
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 name="description"
+
+                label="description"
+                // value={formValue.description}
+                // onChange={handleChange}
+
                 label="Description"
                 value={formValue.description}
                 onChange={handleChange}
+
               />
 
               <TextField
@@ -127,13 +142,30 @@ const AddTourPage = () => {
                 name="price"
                 label="Price"
                 type="number"
+
+                // value={formValue.price}
+                // onChange={handleChange}
+
                 value={formValue.price}
                 onChange={handleChange}
+
               />
 
               <FormControl fullWidth>
                 <InputLabel>Category</InputLabel>
                 <Select
+
+                  // value={formValue.category}
+                  // onChange={handleChange}
+                  label="Category"
+                  name="category"
+                >
+                  {/* {categories.map((category) => (
+                    <MenuItem key={category.id} value={category.id}>
+                      {category.title}
+                    </MenuItem>
+                  ))} */}
+
                   value={formValue.category}
                   onChange={handleChange}
                   label="Category"
@@ -144,6 +176,7 @@ const AddTourPage = () => {
                       {categories.id}
                     </MenuItem>
                   ))}
+
                 </Select>
               </FormControl>
 
@@ -153,6 +186,9 @@ const AddTourPage = () => {
                 fullWidth
                 type="file"
                 name="image"
+
+                // onChange={handleChange}
+
                 onChange={handleChange}
               />
               <TextField
@@ -178,6 +214,7 @@ const AddTourPage = () => {
                 type="file"
                 name="detailImg3"
                 onChange={handleChange}
+
               />
 
               <Button

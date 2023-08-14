@@ -34,7 +34,32 @@ const ProductContext = ({ children }) => {
 
   async function getProducts() {
     try {
-      const { data } = await $axios.get(`${BASE_URL}/post/`);
+      const { data } = await $axios.get(`${BASE_URL}/post/?category=3`);
+      console.log(data, "posts");
+      dispatch({
+        type: "products",
+        payload: data.results,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function getProducts1() {
+    try {
+      const { data } = await $axios.get(`${BASE_URL}/post/?category=2`);
+      console.log(data, "posts");
+      dispatch({
+        type: "products",
+        payload: data.results,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function getProducts2() {
+    try {
+      const { data } = await $axios.get(`${BASE_URL}/post/120/`);
       console.log(data, "posts");
       dispatch({
         type: "products",
@@ -56,16 +81,8 @@ const ProductContext = ({ children }) => {
   }
 
   async function getCategories() {
-    const token = JSON.parse(localStorage.getItem("tokens"));
     try {
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token.access}`,
-        },
-      };
-
-      const { data } = await $axios.get(`${BASE_URL}/category/`, config);
+      const { data } = await $axios.get(`${BASE_URL}/category/`);
       dispatch({
         type: "categories",
         payload: data.results,
@@ -81,6 +98,8 @@ const ProductContext = ({ children }) => {
     categories: state.categories,
     getCategories,
     getProducts,
+    getProducts1,
+    getProducts2,
     createProducts,
   };
   return (
