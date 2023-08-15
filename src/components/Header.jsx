@@ -161,13 +161,13 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Tours</p>
       </MenuItem>
-      <MenuItem onClick={() => navigate("/")}>
+      <MenuItem onClick={() => navigate("/home")}>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={4} color="error">
             <FavoriteIcon />
           </Badge>
         </IconButton>
@@ -227,7 +227,7 @@ export default function PrimarySearchAppBar() {
               </Badge>
             </IconButton>
             <IconButton
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/favorites")}
               size="large"
               aria-label="show 4 new mails"
               color="inherit"

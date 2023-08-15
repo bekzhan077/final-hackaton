@@ -45,7 +45,7 @@ const ProductContext = ({ children }) => {
     }
   }
 
-  async function getProducts1() {
+  async function getTour() {
     try {
       const { data } = await $axios.get(`${BASE_URL}/post/?category=2`);
       console.log(data, "posts");
@@ -57,9 +57,9 @@ const ProductContext = ({ children }) => {
       console.log(e);
     }
   }
-  async function getProducts2() {
+  async function getHotel() {
     try {
-      const { data } = await $axios.get(`${BASE_URL}/post/120/`);
+      const { data } = await $axios.get(`${BASE_URL}/post/?category=2`);
       console.log(data, "posts");
       dispatch({
         type: "products",
@@ -98,8 +98,8 @@ const ProductContext = ({ children }) => {
     categories: state.categories,
     getCategories,
     getProducts,
-    getProducts1,
-    getProducts2,
+    getTour,
+    getHotel,
     createProducts,
   };
   return (

@@ -6,22 +6,22 @@ import AuthPage from "../pages/AuthPage";
 import ActivationPage from "../pages/ActivationPage";
 import TourPage from "../pages/TourPage";
 import HotelPage from "../pages/HotelPage";
-
 import ResetPassPage from "../pages/ResetPassPage";
-
 import AboutUsPage from "../pages/AboutUsPage";
 import WelcomePage from "../pages/WelcomePage";
-import DetailPage from "../pages/DetailPage";
 import AddTourPage from "../pages/AddTourPage";
+import TourDetailPage from "../pages/TourDetailPage";
+import HotelDetailPage from "../pages/HotelDetailPage";
 
 const MainRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayouts />}>
         <Route path="/home" element={<HomePage />} />
-        <Route path="/detail" element={<DetailPage />} />
         <Route path="/add" element={<AddTourPage />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
+        <Route path="/detail/:id" element={<TourDetailPage />} />
+        <Route path="/hotel/:id" element={<HotelDetailPage />} />
       </Route>
       <Route path="/" element={<WelcomePage />} />
       <Route path="/auth" element={<AuthPage />} />
