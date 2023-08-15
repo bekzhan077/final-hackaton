@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import { Box } from "@mui/material";
 import HotelList from "../components/HotelList";
+import Pagination from "../components/Pagination";
+import { useSearchParams } from "react-router-dom";
+import { useProductContext } from "../contexts/ProductContext";
 
 const HotelPage = () => {
+  const { getProducts2 } = useProductContext();
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    getProducts2();
+  }, [searchParams]);
   return (
     <Box>
       <Header />
@@ -36,6 +44,7 @@ const HotelPage = () => {
         </p>
       </div>
       <HotelList />
+      <Pagination />
     </Box>
   );
 };

@@ -4,10 +4,6 @@ import { Box } from "@mui/material";
 import { useProductContext } from "../contexts/ProductContext";
 
 const TourItem = ({ item }) => {
-  const { getProducts1 } = useProductContext();
-  useEffect(() => {
-    getProducts1();
-  }, []);
   return (
     <Box
       style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}

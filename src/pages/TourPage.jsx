@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TourList from "../components/TourList";
 import { Box } from "@mui/material";
 import Header from "../components/Header";
 import "../styles/TourPage.css";
+import { useSearchParams } from "react-router-dom";
+import Pagination from "../components/Pagination";
+import { useProductContext } from "../contexts/ProductContext";
 
 const TourPage = () => {
+  const { getProducts1 } = useProductContext();
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    getProducts1();
+  }, [searchParams]);
   return (
     <Box>
       <Header />
+
       <div
         style={{
           backgroundImage: `url("https://cdn.suwalls.com/wallpapers/nature/caravansary-on-silk-road-in-kyrgyzstan-41123-1920x1200.jpg")`,
@@ -38,6 +47,7 @@ const TourPage = () => {
       </div>
 
       <TourList />
+      <Pagination />
     </Box>
   );
 };
