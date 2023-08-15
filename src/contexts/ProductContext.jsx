@@ -49,15 +49,20 @@ const ProductContext = ({ children }) => {
       `);
 
       const totalCount = Math.ceil(data.count / 10);
-      console.log(totalCount);
-      console.log(window.location.search);
+
       dispatch({
         type: "totalPages",
         payload: totalCount,
       });
 
-
-
+      dispatch({
+        type: "products",
+        payload: data.results,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   async function getHotel() {
     try {
@@ -68,7 +73,19 @@ const ProductContext = ({ children }) => {
       const totalCount = Math.ceil(data.count / 10);
       console.log(data.count);
 
+      dispatch({
+        type: "totalPages",
+        payload: totalCount,
+      });
 
+      dispatch({
+        type: "products2",
+        payload: data.results,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   async function createProducts(product) {
     try {
@@ -101,12 +118,8 @@ const ProductContext = ({ children }) => {
     page,
     setPage,
     getCategories,
-
-
-    getProducts,
     getTour,
     getHotel,
-
     createProducts,
   };
   return (
