@@ -5,10 +5,12 @@ import { useProductContext } from "../contexts/ProductContext";
 import { Link } from "react-router-dom";
 
 const TourItem = ({ item }) => {
+
   const { getTour } = useProductContext();
   useEffect(() => {
     getTour();
   }, []);
+
   return (
     <Box
       style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}

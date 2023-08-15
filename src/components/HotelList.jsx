@@ -3,10 +3,15 @@ import HotelItem from "./HotelItem";
 import { useProductContext } from "../contexts/ProductContext";
 
 const HotelList = () => {
-  const { getHotel, products } = useProductContext();
+
+  const { getHotel, products2 } = useProductContext();
   useEffect(() => {
     getHotel();
   }, []);
+  
+  
+
+
   return (
     <div
       style={{
@@ -17,10 +22,17 @@ const HotelList = () => {
       }}
       className="wrapper"
     >
-      {console.log(products, "products")}
-      {products.length > 0
-        ? products.map((item) => <HotelItem key={item.id} item={item} />)
-        : ""}
+
+    
+
+
+      {products2?.map((item) => (
+
+    
+
+        <HotelItem key={item.id} item={item} />
+      ))}
+
     </div>
   );
 };
