@@ -5,18 +5,19 @@ import { useProductContext } from "../contexts/ProductContext";
 import { Link } from "react-router-dom";
 
 const HotelItem = ({ item, id }) => {
-  const { getProducts } = useProductContext();
-  useEffect(() => {
-    getProducts();
-  }, []);
   return (
     <Box>
       <div className="tour_card">
         <img className="tour_card__image1" src={item.preview} alt="Tour 1" />
         <div className="tour_card__content">
           <p className="tour_card__title">{item.title}</p>
-          <p className="tour_card_description">item.description</p>
+          <p className="tour_card_description">{item.description}</p>
           <p className="tour_card__text">{item.price}</p>
+
+          <a className="tour_card__button" href="#">
+            Read More
+          </a>
+
           <Button
             variant="outlined"
             color="primary"
@@ -25,6 +26,7 @@ const HotelItem = ({ item, id }) => {
           >
             View Details
           </Button>
+
         </div>
       </div>
     </Box>

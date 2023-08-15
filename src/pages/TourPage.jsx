@@ -1,11 +1,23 @@
+
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TourList from "../components/TourList";
 import { Box } from "@mui/material";
 import Header from "../components/Header";
+import "../styles/TourPage.css";
+import { useSearchParams } from "react-router-dom";
+import Pagination from "../components/Pagination";
+import { useProductContext } from "../contexts/ProductContext";
+ 
 
 const TourPage = () => {
   const [tourData, setTourData] = useState([]);
+   const { getTour } = useProductContext();
+  const [searchParams] = useSearchParams();
+  useEffect(() => {
+    getTour();
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchTourData = async () => {
@@ -25,6 +37,7 @@ const TourPage = () => {
   return (
     <Box>
       <Header />
+
       <div
         style={{
           backgroundImage: `url("https://cdn.suwalls.com/wallpapers/nature/caravansary-on-silk-road-in-kyrgyzstan-41123-1920x1200.jpg")`,
@@ -54,7 +67,13 @@ const TourPage = () => {
           Choose your way
         </p>
       </div>
+
+
+    
+      
+
       <TourList tourData={tourData} />
+<Pagination />
     </Box>
   );
 };
