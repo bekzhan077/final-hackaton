@@ -44,16 +44,11 @@ const ProductContext = ({ children }) => {
 
   async function getTour() {
     try {
-
-      const { data } = await $axios.get(`${BASE_URL}/post/?category=3`);
-      console.log(data.results, "products context");
-
       const { data } =
         await $axios.get(`${BASE_URL}/post/${window.location.search}&category=2
       `);
 
       const totalCount = Math.ceil(data.count / 10);
-
 
       dispatch({
         type: "totalPages",
