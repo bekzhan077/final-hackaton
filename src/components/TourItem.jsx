@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
 import "../styles/TourItem.css";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useProductContext } from "../contexts/ProductContext";
+import { Link } from "react-router-dom";
 
 const TourItem = ({ item }) => {
+
+  const { getTour } = useProductContext();
+  useEffect(() => {
+    getTour();
+  }, []);
+
   return (
     <Box
       style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
@@ -13,9 +20,14 @@ const TourItem = ({ item }) => {
         <div className="tour_card__content">
           <p className="tour_card__title">{item.title}</p>
           <p className="tour_card__text"></p>
-          <a className="tour_card__button" href="#">
-            Read More
-          </a>
+          <Button
+            variant="outlined"
+            color="primary"
+            component={Link}
+            to={`/detail/${item.id}`}
+          >
+            View Details
+          </Button>
         </div>
       </div>
     </Box>

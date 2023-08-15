@@ -42,7 +42,7 @@ const ProductContext = ({ children }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(+searchParams.get("page") || 1);
 
-  async function getProducts1() {
+  async function getTour() {
     try {
       const { data } =
         await $axios.get(`${BASE_URL}/post/${window.location.search}&category=2
@@ -56,17 +56,10 @@ const ProductContext = ({ children }) => {
         payload: totalCount,
       });
 
-      dispatch({
-        type: "products",
-        payload: data.results,
-      });
-    } catch (e) {
-      console.log(e);
-      console.log(window.location.search);
-    }
-  }
 
-  async function getProducts2() {
+
+
+  async function getHotel() {
     try {
       const { data } = await $axios.get(
         `${BASE_URL}/post/${window.location.search}&category=3`
@@ -75,20 +68,7 @@ const ProductContext = ({ children }) => {
       const totalCount = Math.ceil(data.count / 10);
       console.log(data.count);
 
-      dispatch({
-        type: "totalPages",
-        payload: totalCount,
-      });
 
-      dispatch({
-        type: "products2",
-        payload: data.results,
-      });
-    } catch (e) {
-      console.log(e);
-      console.log(window.location.search);
-    }
-  }
 
   async function createProducts(product) {
     try {
@@ -121,8 +101,12 @@ const ProductContext = ({ children }) => {
     page,
     setPage,
     getCategories,
-    getProducts1,
-    getProducts2,
+
+
+    getProducts,
+    getTour,
+    getHotel,
+
     createProducts,
   };
   return (

@@ -3,9 +3,9 @@ import TourItem from "./TourItem";
 import { useProductContext } from "../contexts/ProductContext";
 
 const TourList = () => {
-  const { getProducts1, products } = useProductContext();
+  const { getTour, products } = useProductContext();
   useEffect(() => {
-    getProducts1();
+    getTour();
   }, []);
   return (
     <div
@@ -14,7 +14,6 @@ const TourList = () => {
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
-        // flexDirection: "row",
       }}
       className="wrapper"
     >

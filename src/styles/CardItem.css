@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;700&family=Shantell+Sans:wght@400;500;700&display=swap");
+
+.card {
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 1200px;
+  height: 350px;
+  background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+.card2 {
+  position: relative;
+  width: 1200px;
+  height: 350px;
+  background-color: #c7c7c7a8;
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+/* todo card -1 */
+
+.img-card {
+  width: 450px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.detail-home {
+  position: absolute;
+  width: 500px;
+  left: 100vh;
+  font-family: "Shantell Sans";
+}
+
+/* todo card - 1 end */
+/* todo card - 2 end */
+
+.detail-home2 {
+  position: absolute;
+  width: 500px;
+  left: 15vh;
+  font-family: "Shantell Sans";
+}
+
+.img-card2 {
+  width: 450px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 20px;
+  margin-left: 133vh;
+}
+
+.card2:hover {
+  position: absolute;
+  transform: scale(0.98);
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.3);
+}
