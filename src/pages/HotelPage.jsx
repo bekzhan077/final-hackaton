@@ -8,7 +8,9 @@ import Pagination from "../components/Pagination";
 import { useSearchParams } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
 
+
 const HotelPage = () => {
+
   const [hotelData, setHotelData] = useState([]);
   const { getHotel } = useProductContext();
   const [searchParams] = useSearchParams();

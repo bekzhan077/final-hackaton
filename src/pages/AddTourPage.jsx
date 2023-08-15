@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Button,
   CssBaseline,
@@ -10,22 +11,19 @@ import {
   createTheme,
 } from "@mui/material";
 import { Box, Container, ThemeProvider } from "@mui/system";
-import React, { useEffect, useState } from "react";
 import { useProductContext } from "../contexts/ProductContext";
 
 const defaultTheme = createTheme();
+
 const AddTourPage = () => {
   const { getCategories, createProducts, categories } = useProductContext();
 
   const [formValue, setFormValue] = useState({
     title: "",
-    image: "",
-    detailImg: "",
-    detailImg2: "",
-    detailImg3: "",
+    preview: "",
     description: "",
     price: "",
-    categories: "",
+    category: "",
   });
 
   useEffect(() => {
@@ -33,14 +31,10 @@ const AddTourPage = () => {
   }, []);
 
   function handleChange(e) {
-    if (e.target.name === "image") {
+    if (e.target.name === "preview") {
       setFormValue({
         ...formValue,
-        image: e.target.files[0],
-        detailImg: e.target.files[1],
-        detailImg2: e.target.files[2],
-
-        detailImg3: e.target.files[3],
+        preview: e.target.files[0],
       });
     } else {
       setFormValue({
@@ -49,16 +43,14 @@ const AddTourPage = () => {
       });
     }
   }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
       !formValue.title.trim() ||
-      !formValue.description.trim() ||
+      !formValue.body.trim() ||
       !formValue.price.trim() ||
-      !formValue.image ||
-      !formValue.detailImg ||
-      !formValue.detailImg2 ||
-      !formValue.detailImg3 ||
+      !formValue.preview ||
       !formValue.category
     ) {
       return;
@@ -70,12 +62,9 @@ const AddTourPage = () => {
 
     setFormValue({
       title: "",
-      description: "",
+      body: "",
       price: "",
-      image: "",
-      detailImg: "",
-      detailImg2: "",
-      detailImg3: "",
+      preview: "",
       category: "",
     });
   };
@@ -94,12 +83,11 @@ const AddTourPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              New Dish
+              New Hotel || Tours
             </Typography>
             <Box
               component="form"
-              // onSubmit={handleSubmit}
-
+              onSubmit={handleSubmit}
               noValidate
               sx={{ mt: 1 }}
             >
@@ -110,19 +98,18 @@ const AddTourPage = () => {
                 label="Title"
                 name="title"
                 autoFocus
-                // value={formValue.title}
-                // onChange={handleChange}
+                value={formValue.title}
+                onChange={handleChange}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="description"
-                label="description"
-                // value={formValue.description}
-                // onChange={handleChange}
+                name="body"
+                label="Description"
+                value={formValue.body}
+                onChange={handleChange}
               />
-
               <TextField
                 margin="normal"
                 required
@@ -130,10 +117,9 @@ const AddTourPage = () => {
                 name="price"
                 label="Price"
                 type="number"
-                // value={formValue.price}
-                // onChange={handleChange}
+                value={formValue.price}
+                onChange={handleChange}
               />
-
               <FormControl fullWidth>
                 <InputLabel>Category</InputLabel>
                 <Select
@@ -142,44 +128,20 @@ const AddTourPage = () => {
                   value={formValue.category}
                   onChange={handleChange}
                 >
-                  {/* {categories.map((categories) => (
-                    <MenuItem key={categories.id} value={categories.id}>
-                      {categories.id}
-                    </MenuItem>
-                  ))} */}
+                  {categories.length > 0 &&
+                    categories.map((item) => (
+                      <MenuItem key={item.id} value={item.id}>
+                        {item.id}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
-
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 type="file"
-                name="image"
-                onChange={handleChange}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="detailImg"
-                onChange={handleChange}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="detailImg2"
-                onChange={handleChange}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="detailImg3"
+                name="preview"
                 onChange={handleChange}
               />
 
