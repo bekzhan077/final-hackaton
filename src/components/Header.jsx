@@ -189,7 +189,7 @@ export default function PrimarySearchAppBar() {
       <AppBar
         position="static"
         sx={{
-          backgroundColor: "#0b8a4a",
+          backgroundImage: "linear-gradient(163deg, #00ff75 0%, #3700ff 100%)",
         }}
       >
         <Toolbar>
