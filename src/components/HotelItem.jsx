@@ -14,10 +14,6 @@ const HotelItem = ({ item, id }) => {
           <p className="tour_card_description">{item.description}</p>
           <p className="tour_card__text">{item.price}</p>
 
-          <a className="tour_card__button" href="#">
-            Read More
-          </a>
-
           <Button
             variant="outlined"
             color="primary"
@@ -26,7 +22,6 @@ const HotelItem = ({ item, id }) => {
           >
             View Details
           </Button>
-
         </div>
       </div>
     </Box>
