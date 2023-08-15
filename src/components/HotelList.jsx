@@ -17,9 +17,10 @@ const HotelList = () => {
       }}
       className="wrapper"
     >
-      {products.map((item) => (
-        <HotelItem key={item.id} item={item} />
-      ))}
+      {console.log(products, "products")}
+      {products.length > 0
+        ? products.map((item) => <HotelItem key={item.id} item={item} />)
+        : ""}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import HotelList from "../components/HotelList";
 import "../styles/HotelPage.css";
 import axios from "axios";
 
-const HotelPage = () => {
+const HotelPage = ({ item }) => {
   const [hotelData, setHotelData] = useState([]);
 
   useEffect(() => {

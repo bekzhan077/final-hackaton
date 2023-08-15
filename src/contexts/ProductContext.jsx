@@ -35,7 +35,7 @@ const ProductContext = ({ children }) => {
   async function getProducts() {
     try {
       const { data } = await $axios.get(`${BASE_URL}/post/?category=3`);
-      console.log(data, "posts");
+      console.log(data.results, "products context");
       dispatch({
         type: "products",
         payload: data.results,
@@ -83,9 +83,10 @@ const ProductContext = ({ children }) => {
   async function getCategories() {
     try {
       const { data } = await $axios.get(`${BASE_URL}/category/`);
+      console.log(data, ":data");
       dispatch({
         type: "categories",
-        payload: data.results,
+        payload: data,
       });
     } catch (e) {
       console.log(e);
