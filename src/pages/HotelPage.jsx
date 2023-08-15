@@ -7,14 +7,16 @@ import { Box } from "@mui/material";
 import HotelList from "../components/HotelList";
 import "../styles/HotelPage.css";
 import axios from "axios";
-
 import Pagination from "../components/Pagination";
 import { useSearchParams } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
 
 
 
+
+
 const HotelPage = () => {
+
   const [hotelData, setHotelData] = useState([]);
  const { getHotel } = useProductContext();
   const [searchParams] = useSearchParams();

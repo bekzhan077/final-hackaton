@@ -23,12 +23,16 @@ const HotelList = () => {
       className="wrapper"
     >
 
+    
+
+
       {products2?.map((item) => (
 
     
 
         <HotelItem key={item.id} item={item} />
       ))}
+
     </div>
   );
 };
