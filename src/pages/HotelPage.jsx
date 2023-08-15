@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Box } from "@mui/material";
 import HotelList from "../components/HotelList";
+import "../styles/HotelPage.css";
+import axios from "axios";
 
 const HotelPage = () => {
+  const [hotelData, setHotelData] = useState([]);
+
+  useEffect(() => {
+    const fetchHotelData = async () => {
+      try {
+        const response = await axios.get(
+          "https://app.kayakta.pp.ua/post/?category=3"
+        );
+        setHotelData(response.data.results);
+      } catch (error) {
+        console.error("Error fetching Hotel data:", error);
+      }
+    };
+
+    fetchHotelData();
+  }, []);
   return (
     <Box>
       <Header />
@@ -13,29 +31,30 @@ const HotelPage = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          minHeight: "100vh", // Чтобы задний фон занимал всю высоту экрана
+          minHeight: "100vh",
+          position: "relative",
         }}
       >
         <p
           style={{
-            position: "absolute", // Устанавливаем абсолютное позиционирование для текста
-            top: "50%", // Располагаем текст вертикально по центру
-            left: "50%", // Располагаем текст горизонтально по центру
-            transform: "translate(-100%, -50%)", // Центрируем текст точно
-            color: "white", // Устанавливаем цвет текста
-            fontSize: "100px", // Размер шрифта
-            letterSpacing: "10px",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "white",
+            fontSize: "6vw", // Используем относительную единицу измерения
+            letterSpacing: "0.5vw", // Также используем относительную единицу для интервала
             fontFamily: "Shantell Sans",
             fontWeight: "normal",
-            color: "white", // Цвет текста
             textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-            textAlign: "center", //
+            textAlign: "center",
+            maxWidth: "80%",
           }}
         >
           Choose where to sleep
         </p>
       </div>
-      <HotelList />
+      <HotelList hotelData={hotelData} />
     </Box>
   );
 };
