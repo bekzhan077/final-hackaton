@@ -1,11 +1,8 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -15,43 +12,12 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import ExploreIcon from "@mui/icons-material/Explore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-
-import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
-import HotelPage from "../pages/HotelPage";
-import LiveSearch from "./LiveSearch";
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: "100px 10px 100px 10px",
-
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "80%",
-
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "80%",
-    borderRadius: "100px 10px 100px 10px",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
+import { useAuthContext } from "../contexts/AuthContexts";
 
 export default function PrimarySearchAppBar() {
+  const { user, logout, isAdmin } = useAuthContext();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -94,8 +60,20 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {!user ? (
+        <MenuItem component={Link} to="/auth">
+          Login
+        </MenuItem>
+      ) : (
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            logout();
+          }}
+        >
+          Logout
+        </MenuItem>
+      )}
     </Menu>
   );
 
@@ -195,16 +173,21 @@ export default function PrimarySearchAppBar() {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              onClick={() => navigate("/add")}
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <AddCircleIcon />
-              </Badge>
-            </IconButton>
+            {isAdmin() ? (
+              <IconButton
+                onClick={() => navigate("/add")}
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+              >
+                <Badge badgeContent={4} color="error">
+                  <AddCircleIcon />
+                </Badge>
+              </IconButton>
+            ) : (
+              ""
+            )}
+
             <IconButton
               onClick={() => navigate("/favorites")}
               size="large"
