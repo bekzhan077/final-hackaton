@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
-import { BASE_URL } from "../utils/consts";
+import { ADMINS, BASE_URL } from "../utils/consts";
 import $axios from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import { notify } from "../components/Toastify";
@@ -26,6 +26,7 @@ const AuthContext = ({ children }) => {
         credentials
       );
       notify("Succes");
+      console.log(res);
     } catch (e) {
       notify(e.code.split("/")[1], "error");
     }
@@ -107,6 +108,14 @@ const AuthContext = ({ children }) => {
     }
   }
 
+  function isAdmin() {
+    if (!user) {
+      return false;
+    }
+
+    return ADMINS.includes(user.email);
+  }
+
   const value = {
     user,
     register,
@@ -119,6 +128,7 @@ const AuthContext = ({ children }) => {
     handleOpen,
     handleClose,
     confirmPassword,
+    isAdmin,
   };
 
   return <authContext.Provider value={value}>{children}</authContext.Provider>;
