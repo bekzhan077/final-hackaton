@@ -1,6 +1,3 @@
-
-
-
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Box } from "@mui/material";
@@ -12,19 +9,15 @@ import { useSearchParams } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
 
 
-
-
-
 const HotelPage = () => {
 
   const [hotelData, setHotelData] = useState([]);
- const { getHotel } = useProductContext();
+  const { getHotel } = useProductContext();
   const [searchParams] = useSearchParams();
   useEffect(() => {
     getHotel();
   }, [searchParams]);
-  
-  
+
   useEffect(() => {
     const fetchHotelData = async () => {
       try {
@@ -73,11 +66,8 @@ const HotelPage = () => {
         </p>
       </div>
 
-     
-    
-
       <HotelList hotelData={hotelData} />
-  <Pagination />
+      <Pagination />
     </Box>
   );
 };
