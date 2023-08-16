@@ -2,21 +2,20 @@ import React, { useEffect, useState } from "react";
 import {
   Button,
   CssBaseline,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
   Typography,
   createTheme,
 } from "@mui/material";
 import { Box, Container, ThemeProvider } from "@mui/system";
 import { useProductContext } from "../contexts/ProductContext";
+import { useParams } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
-const AddTourPage = () => {
-  const { getCategories, createProducts, categories } = useProductContext();
+const EditTourPage = () => {
+  const { getOneTour, editTour, tour } = useProductContext();
+
+  const { id } = useParams();
 
   const [formValue, setFormValue] = useState({
     title: "",
@@ -28,14 +27,33 @@ const AddTourPage = () => {
   });
 
   useEffect(() => {
-    getCategories();
+    getOneTour(id);
   }, []);
 
+  useEffect(() => {
+    tour && setFormValue(tour);
+  }, [tour]);
+
   function handleChange(e) {
+    console.log(e.target.files[0]);
     if (e.target.name === "preview") {
       setFormValue({
         ...formValue,
+
         preview: e.target.files[0],
+      });
+    } else {
+      setFormValue({
+        ...formValue,
+        [e.target.name]: e.target.value,
+      });
+    }
+  }
+
+  function handleChangeImg1(e) {
+    if (e.target.name === "images") {
+      setFormValue({
+        ...formValue,
         images: e.target.files[0],
       });
     } else {
@@ -61,8 +79,7 @@ const AddTourPage = () => {
 
     const data = new FormData(event.currentTarget);
 
-    createProducts(data);
-
+    editTour(id, data);
     setFormValue({
       title: "",
       body: "",
@@ -87,7 +104,7 @@ const AddTourPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              New Hotel || Tours
+              Edit Tour
             </Typography>
             <Box
               component="form"
@@ -124,22 +141,7 @@ const AddTourPage = () => {
                 value={formValue.price}
                 onChange={handleChange}
               />
-              <FormControl fullWidth>
-                <InputLabel>Category</InputLabel>
-                <Select
-                  label="Category"
-                  name="category"
-                  value={formValue.category}
-                  onChange={handleChange}
-                >
-                  {categories.length > 0 &&
-                    categories.map((item) => (
-                      <MenuItem key={item.id} value={item.id}>
-                        {item.id}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </FormControl>
+
               <TextField
                 margin="normal"
                 required
@@ -148,38 +150,13 @@ const AddTourPage = () => {
                 name="preview"
                 onChange={handleChange}
               />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="images"
-                onChange={handleChange}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="images"
-                onChange={handleChange}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="images"
-                onChange={handleChange}
-              />
-
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Add New Product
+                Submit Product
               </Button>
             </Box>
           </Box>
@@ -189,4 +166,4 @@ const AddTourPage = () => {
   );
 };
 
-export default AddTourPage;
+export default EditTourPage;

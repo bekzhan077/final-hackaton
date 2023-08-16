@@ -3,6 +3,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
+import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -15,11 +16,14 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContexts";
+import HotelPage from "../pages/HotelPage";
+
 
 export default function PrimarySearchAppBar() {
   const { user, logout, isAdmin } = useAuthContext();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { user, logout } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -230,7 +234,7 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={logout}
               color="inherit"
             >
               <AccountCircle />
