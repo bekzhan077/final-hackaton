@@ -1,8 +1,14 @@
 import { async } from "q";
-import React, { createContext, useContext, useReducer, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import $axios from "../utils/axios";
 
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { BASE_URL } from "../utils/consts";
 
 const productContexts = createContext();
@@ -15,6 +21,8 @@ const initState = {
   products: [],
   products2: [],
   product: null,
+  tour: null,
+  hotel: null,
   categories: [],
   totalPages: 1,
 };
@@ -31,7 +39,10 @@ function reducer(state, action) {
       return { ...state, categories: action.payload };
     case "totalPages":
       return { ...state, totalPages: action.payload };
-
+    case "tour":
+      return { ...state, tour: action.payload };
+    case "hotel":
+      return { ...state, hotel: action.payload };
     default:
       return state;
   }
@@ -44,9 +55,9 @@ const ProductContext = ({ children }) => {
 
   async function getTour() {
     try {
-      const { data } =
-        await $axios.get(`${BASE_URL}/post/${window.location.search}&category=2
-      `);
+      const { data } = await $axios.get(
+        `${BASE_URL}/post/${window.location.search}&category=2`
+      );
 
       const totalCount = Math.ceil(data.count / 10);
 
@@ -100,11 +111,74 @@ const ProductContext = ({ children }) => {
   async function getCategories() {
     try {
       const { data } = await $axios.get(`${BASE_URL}/category/`);
-      console.log(data, ":data");
+
       dispatch({
         type: "categories",
         payload: data,
       });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function deleteTour(id) {
+    try {
+      await $axios.delete(`${BASE_URL}/post/${id}/`);
+      getTour();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function deleteHotel(id) {
+    try {
+      await $axios.delete(`${BASE_URL}/post/${id}/`);
+      getHotel();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function getOneTour(id) {
+    try {
+      const { data } = await $axios.get(`${BASE_URL}/post/${id}/`);
+      dispatch({
+        type: "tour",
+        payload: data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function getOneHotel(id) {
+    try {
+      const { data } = await $axios.get(`${BASE_URL}/post/${id}/`);
+      dispatch({
+        type: "hotel",
+        payload: data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const navigate = useNavigate();
+
+  async function editTour(id, newTour) {
+    console.log([...newTour]);
+    try {
+      await $axios.patch(`${BASE_URL}/post/${id}/`, newTour);
+      navigate("/tour");
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function editHotel(id, newHotel) {
+    try {
+      await $axios.patch(`${BASE_URL}/post/${id}/`, newHotel);
+      navigate("/hotel");
     } catch (e) {
       console.log(e);
     }
@@ -116,12 +190,20 @@ const ProductContext = ({ children }) => {
     oneProducts: state.oneProducts,
     categories: state.categories,
     totalPages: state.totalPages,
+    tour: state.tour,
+    hotel: state.hotel,
     page,
     setPage,
     getCategories,
     getTour,
     getHotel,
     createProducts,
+    getOneTour,
+    getOneHotel,
+    deleteTour,
+    editTour,
+    deleteHotel,
+    editHotel,
   };
   return (
     <productContexts.Provider value={value}>

@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import "../styles/TourItem.css";
 import { Box, Button } from "@mui/material";
 import { useProductContext } from "../contexts/ProductContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TourItem = ({ item }) => {
+  const { getTour, deleteTour, getOneTour } = useProductContext();
 
-  const { getTour } = useProductContext();
+  const navigate = useNavigate();
+
   useEffect(() => {
     getTour();
   }, []);
@@ -28,6 +30,8 @@ const TourItem = ({ item }) => {
           >
             View Details
           </Button>
+          <button onClick={() => deleteTour(item.id)}>Delte</button>
+          <button onClick={() => navigate(`/touredit/${item.id}`)}>EDit</button>
         </div>
       </div>
     </Box>

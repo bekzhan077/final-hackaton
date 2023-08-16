@@ -9,7 +9,6 @@ const TourDetailPage = () => {
   const [itemData, setItemData] = useState(null);
 
   useEffect(() => {
-    // Здесь выполняется запрос на сервер для получения данных о туре по его id
     axios
       .get(`https://app.kayakta.pp.ua/post/${id}/`)
       .then((response) => {
@@ -23,6 +22,8 @@ const TourDetailPage = () => {
   if (!itemData) {
     return <div>Loading...</div>;
   }
+
+  console.log(itemData);
 
   return (
     <div>

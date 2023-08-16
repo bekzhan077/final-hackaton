@@ -12,6 +12,8 @@ import WelcomePage from "../pages/WelcomePage";
 import AddTourPage from "../pages/AddTourPage";
 import TourDetailPage from "../pages/TourDetailPage";
 import HotelDetailPage from "../pages/HotelDetailPage";
+import EditTourPage from "../pages/EditTourPage";
+import EditHotelPage from "../pages/EditHotelPage";
 
 const MainRoutes = () => {
   return (
@@ -22,6 +24,8 @@ const MainRoutes = () => {
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/detail/:id" element={<TourDetailPage />} />
         <Route path="/hotel/:id" element={<HotelDetailPage />} />
+        <Route path="/touredit/:id" element={<EditTourPage />} />
+        <Route path="/hoteledit/:id" element={<EditHotelPage />} />
       </Route>
       <Route path="/" element={<WelcomePage />} />
       <Route path="/auth" element={<AuthPage />} />
