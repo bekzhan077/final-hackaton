@@ -2,13 +2,23 @@ import { Box, Button } from "@mui/material";
 import React, { useEffect } from "react";
 import "../styles/TourItem.css";
 import { useProductContext } from "../contexts/ProductContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HotelItem = ({ item, id }) => {
+  const { getHotel, deleteHotel } = useProductContext();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getHotel();
+  }, []);
+
   return (
     <Box>
       <div className="tour_card">
         <img className="tour_card__image1" src={item.preview} alt="Tour 1" />
+        <img className="tour_card__image2" src={item.images} alt="Tour 2" />
+
         <div className="tour_card__content">
           <p className="tour_card__title">{item.title}</p>
           <p className="tour_card_description">{item.description}</p>
@@ -22,6 +32,10 @@ const HotelItem = ({ item, id }) => {
           >
             View Details
           </Button>
+          <button onClick={() => deleteHotel(item.id)}>Delete</button>
+          <button onClick={() => navigate(`/hoteledit/${item.id}`)}>
+            Edit
+          </button>
         </div>
       </div>
     </Box>

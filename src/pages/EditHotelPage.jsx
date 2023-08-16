@@ -2,34 +2,37 @@ import React, { useEffect, useState } from "react";
 import {
   Button,
   CssBaseline,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
   Typography,
   createTheme,
 } from "@mui/material";
 import { Box, Container, ThemeProvider } from "@mui/system";
 import { useProductContext } from "../contexts/ProductContext";
+import { useParams } from "react-router-dom";
 
 const defaultTheme = createTheme();
 
-const AddTourPage = () => {
-  const { getCategories, createProducts, categories } = useProductContext();
+const EditHotelPage = () => {
+  const { getCategories, editHotel, getOneHotel, hotel } = useProductContext();
+
+  const { id } = useParams();
 
   const [formValue, setFormValue] = useState({
     title: "",
     preview: "",
     description: "",
     price: "",
-    category: "",
     images: "",
   });
 
   useEffect(() => {
     getCategories();
+    getOneHotel(id);
   }, []);
+
+  useEffect(() => {
+    hotel && setFormValue(hotel);
+  }, [hotel]);
 
   function handleChange(e) {
     if (e.target.name === "preview") {
@@ -53,22 +56,21 @@ const AddTourPage = () => {
       !formValue.body.trim() ||
       !formValue.price.trim() ||
       !formValue.preview ||
-      !formValue.images ||
-      !formValue.category
+      !formValue.images
     ) {
       return;
     }
+    console.log(formValue);
 
     const data = new FormData(event.currentTarget);
-
-    createProducts(data);
+    console.log([...data]);
+    editHotel(id, data);
 
     setFormValue({
       title: "",
       body: "",
       price: "",
       preview: "",
-      category: "",
       images: "",
     });
   };
@@ -87,7 +89,7 @@ const AddTourPage = () => {
             }}
           >
             <Typography component="h1" variant="h5">
-              New Hotel || Tours
+              Edit Hotel
             </Typography>
             <Box
               component="form"
@@ -124,22 +126,6 @@ const AddTourPage = () => {
                 value={formValue.price}
                 onChange={handleChange}
               />
-              <FormControl fullWidth>
-                <InputLabel>Category</InputLabel>
-                <Select
-                  label="Category"
-                  name="category"
-                  value={formValue.category}
-                  onChange={handleChange}
-                >
-                  {categories.length > 0 &&
-                    categories.map((item) => (
-                      <MenuItem key={item.id} value={item.id}>
-                        {item.id}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </FormControl>
               <TextField
                 margin="normal"
                 required
@@ -148,38 +134,13 @@ const AddTourPage = () => {
                 name="preview"
                 onChange={handleChange}
               />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="images"
-                onChange={handleChange}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="images"
-                onChange={handleChange}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                type="file"
-                name="images"
-                onChange={handleChange}
-              />
-
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Add New Product
+                Submit Product
               </Button>
             </Box>
           </Box>
@@ -189,4 +150,4 @@ const AddTourPage = () => {
   );
 };
 
-export default AddTourPage;
+export default EditHotelPage;

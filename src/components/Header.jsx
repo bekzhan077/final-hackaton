@@ -20,6 +20,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import HotelPage from "../pages/HotelPage";
+import { useAuthContext } from "../contexts/AuthContexts";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,6 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { user, logout } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -268,7 +270,7 @@ export default function PrimarySearchAppBar() {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={logout}
               color="inherit"
             >
               <AccountCircle />
