@@ -97,50 +97,68 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={() => navigate("/")}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
+      {!user ? (
+        <MenuItem component={Link} to="/auth">
+          <p>Login</p>
+        </MenuItem>
+      ) : (
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            logout();
+          }}
         >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-      <MenuItem onClick={() => navigate("/hotel")}>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <NightShelterIcon />
-          </Badge>
-        </IconButton>
-        <p>Hotels</p>
-      </MenuItem>
-      <MenuItem onClick={() => navigate("/tour")}>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <ExploreIcon />
-          </Badge>
-        </IconButton>
-        <p>Tours</p>
-      </MenuItem>
-      <MenuItem onClick={() => navigate("/home")}>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={4} color="error">
-            <FavoriteIcon />
-          </Badge>
-        </IconButton>
-        <p>Favorite</p>
-      </MenuItem>
+          <MenuItem onClick={() => navigate("/")}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <p>Homepage</p>
+          </MenuItem>
+          <MenuItem onClick={() => navigate("/hotel")}>
+            <IconButton
+              size="large"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
+              <Badge badgeContent={4} color="error">
+                <NightShelterIcon />
+              </Badge>
+            </IconButton>
+            <p>Hotels</p>
+          </MenuItem>
+          <MenuItem onClick={() => navigate("/tour")}>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={17} color="error">
+                <ExploreIcon />
+              </Badge>
+            </IconButton>
+            <p>Tours</p>
+          </MenuItem>
+          <MenuItem onClick={() => navigate("/home")}>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={4} color="error">
+                <FavoriteIcon />
+              </Badge>
+            </IconButton>
+            <p>Favorite</p>
+          </MenuItem>
+          <p>Logout</p>
+        </MenuItem>
+      )}
       {!isAdmin ? (
         <MenuItem onClick={() => navigate("/add")}>
           <IconButton
