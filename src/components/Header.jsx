@@ -98,7 +98,6 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-
       <MenuItem onClick={() => navigate("/")}>
         <IconButton
           size="large"
@@ -109,7 +108,7 @@ export default function PrimarySearchAppBar() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Homepage</p>
       </MenuItem>
       <MenuItem onClick={() => navigate("/hotel")}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -131,12 +130,6 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Tours</p>
       </MenuItem>
-      <MenuItem onClick={() => navigate("/home")}>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-
       {!user ? (
         <MenuItem component={Link} to="/auth">
           <p>Login</p>
@@ -147,7 +140,6 @@ export default function PrimarySearchAppBar() {
             handleMenuClose();
             logout();
           }}
-
         >
           <MenuItem onClick={() => navigate("/")}>
             <IconButton
@@ -173,18 +165,7 @@ export default function PrimarySearchAppBar() {
             </IconButton>
             <p>Hotels</p>
           </MenuItem>
-          <MenuItem onClick={() => navigate("/tour")}>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <ExploreIcon />
-              </Badge>
-            </IconButton>
-            <p>Tours</p>
-          </MenuItem>
+
           <MenuItem onClick={() => navigate("/home")}>
             <IconButton
               size="large"
@@ -211,6 +192,7 @@ export default function PrimarySearchAppBar() {
               <AddCircleIcon />
             </Badge>
           </IconButton>
+          {/* </MenuItem> */}
           <p>Add</p>
         </MenuItem>
       ) : (
