@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TourList from "../components/TourList";
@@ -9,11 +7,10 @@ import "../styles/TourPage.css";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../components/Pagination";
 import { useProductContext } from "../contexts/ProductContext";
- 
 
 const TourPage = () => {
   const [tourData, setTourData] = useState([]);
-   const { getTour } = useProductContext();
+  const { getTour } = useProductContext();
   const [searchParams] = useSearchParams();
   useEffect(() => {
     getTour();
@@ -68,12 +65,8 @@ const TourPage = () => {
         </p>
       </div>
 
-
-    
-      
-
       <TourList tourData={tourData} />
-<Pagination />
+      <Pagination />
     </Box>
   );
 };
