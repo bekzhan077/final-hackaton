@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -142,14 +141,22 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Favorite</p>
       </MenuItem>
-      <MenuItem onClick={() => navigate("/add")}>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <AddCircleIcon />
-          </Badge>
-        </IconButton>
-        <p>Add</p>
-      </MenuItem>
+      {!isAdmin ? (
+        <MenuItem onClick={() => navigate("/add")}>
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <AddCircleIcon />
+            </Badge>
+          </IconButton>
+          <p>Add</p>
+        </MenuItem>
+      ) : (
+        ""
+      )}
     </Menu>
   );
 
@@ -224,22 +231,21 @@ export default function PrimarySearchAppBar() {
                 <NightShelterIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            ></IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={logout}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+
+            {!user ? (
+              <MenuItem component={Link} to="/auth">
+                Login
+              </MenuItem>
+            ) : (
+              <MenuItem
+                onClick={() => {
+                  handleMenuClose();
+                  logout();
+                }}
+              >
+                Logout
+              </MenuItem>
+            )}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
