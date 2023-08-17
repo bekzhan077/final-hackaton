@@ -150,15 +150,14 @@
   justify-content: center;
   text-align: center;
   width: 40%;
+  row-gap: 35px;
 }
 
 .nav-footer h1 {
   font-size: 30px;
   color: #e3edf7;
   font-weight: 500;
-}
-
-.nav-footer input {
+  padding: 20px;
 }
 
 .google {

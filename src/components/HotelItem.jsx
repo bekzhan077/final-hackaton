@@ -34,35 +34,53 @@ const HotelItem = ({ item, id }) => {
             color="primary"
             component={Link}
             to={`/detail/${item.id}`}
+            sx={{
+              backgroundColor: "green",
+              color: "white",
+              border: "none",
+              fontWeight: 600,
+            }}
           >
             View Details
           </Button>
-
 
           <Button
             variant="outlined"
             color="primary"
             onClick={() => deleteHotel(item.id)}
+            sx={{
+              backgroundColor: "red",
+              color: "white",
+              marginLeft: "10px",
+              fontWeight: 600,
+              border: "none",
+            }}
           >
             Delete
           </Button>
           <Button
-            sx={{ mt: 1 }}
+            sx={{
+              mt: 1,
+              backgroundColor: "#0000FF",
+              color: "white",
+              fontWeight: 600,
+              border: "none",
+            }}
             variant="outlined"
             color="primary"
             onClick={() => navigate(`/hoteledit/${item.id}`)}
           >
             Edit Tour
           </Button>
-
-          {isAlreadyIsCart(item.id) ? (
-            <RemoveShoppingCartIcon
-              onClick={() => deleteDishFromCart(item.id)}
-            />
-          ) : (
-            <ShoppingCartIcon onClick={() => addPostToCart(item)} />
-          )}
-
+          <div style={{ cursor: "pointer", padding: "10px" }}>
+            {isAlreadyIsCart(item.id) ? (
+              <RemoveShoppingCartIcon
+                onClick={() => deleteDishFromCart(item.id)}
+              />
+            ) : (
+              <ShoppingCartIcon onClick={() => addPostToCart(item)} />
+            )}
+          </div>
         </div>
       </div>
     </Box>
