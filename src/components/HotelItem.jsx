@@ -3,9 +3,14 @@ import React, { useEffect } from "react";
 import "../styles/TourItem.css";
 import { useProductContext } from "../contexts/ProductContext";
 import { Link, useNavigate } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import { useCartContext } from "../contexts/CartContext";
 
 const HotelItem = ({ item, id }) => {
   const { getHotel, deleteHotel } = useProductContext();
+  const { isAlreadyIsCart, addPostToCart, deleteDishFromCart } =
+    useCartContext();
 
   const navigate = useNavigate();
 
@@ -36,6 +41,13 @@ const HotelItem = ({ item, id }) => {
           <button onClick={() => navigate(`/hoteledit/${item.id}`)}>
             Edit
           </button>
+          {isAlreadyIsCart(item.id) ? (
+            <RemoveShoppingCartIcon
+              onClick={() => deleteDishFromCart(item.id)}
+            />
+          ) : (
+            <ShoppingCartIcon onClick={() => addPostToCart(item)} />
+          )}
         </div>
       </div>
     </Box>
