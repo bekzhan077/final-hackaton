@@ -22,7 +22,7 @@ const HotelItem = ({ item, id }) => {
         <div className="tour_card__content">
           <p className="tour_card__title">{item.title}</p>
           <p className="tour_card_description">{item.description}</p>
-          <p className="tour_card__text">{item.price}</p>
+          <p className="tour_card__text">{item.price}$</p>
 
           <Button
             variant="outlined"
@@ -32,10 +32,22 @@ const HotelItem = ({ item, id }) => {
           >
             View Details
           </Button>
-          <button onClick={() => deleteHotel(item.id)}>Delete</button>
-          <button onClick={() => navigate(`/hoteledit/${item.id}`)}>
-            Edit
-          </button>
+
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => deleteHotel(item.id)}
+          >
+            Delete
+          </Button>
+          <Button
+            sx={{ mt: 1 }}
+            variant="outlined"
+            color="primary"
+            onClick={() => navigate(`/hoteledit/${item.id}`)}
+          >
+            Edit Tour
+          </Button>
         </div>
       </div>
     </Box>

@@ -19,9 +19,12 @@ const TourItem = ({ item }) => {
     >
       <div className="tour_card">
         <img className="tour_card__image1" src={item.preview} alt="Tour 1" />
+        <img className="tour_card__image2" src={item.images} alt="Tour 2" />
+
         <div className="tour_card__content">
           <p className="tour_card__title">{item.title}</p>
-          <p className="tour_card__text"></p>
+          <p className="tour_card_description">{item.description}</p>
+          <p className="tour_card__text">{item.price}$</p>
           <Button
             variant="outlined"
             color="primary"
@@ -30,8 +33,21 @@ const TourItem = ({ item }) => {
           >
             View Details
           </Button>
-          <button onClick={() => deleteTour(item.id)}>Delte</button>
-          <button onClick={() => navigate(`/touredit/${item.id}`)}>EDit</button>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => deleteTour(item.id)}
+          >
+            Delete
+          </Button>
+          <Button
+            sx={{ mt: 1 }}
+            variant="outlined"
+            color="primary"
+            onClick={() => navigate(`/touredit/${item.id}`)}
+          >
+            Edit Tour
+          </Button>
         </div>
       </div>
     </Box>
