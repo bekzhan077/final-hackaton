@@ -82,7 +82,6 @@ const ProductContext = ({ children }) => {
       );
 
       const totalCount = Math.ceil(data.count / 10);
-      console.log(data.count);
 
       dispatch({
         type: "totalPages",
