@@ -186,6 +186,35 @@ const ProductContext = ({ children }) => {
     }
   }
 
+  const [comments, setComments] = useState([]);
+
+  async function getComments(id) {
+    try {
+      const { data } = await $axios.get(`${BASE_URL}/post/${id}/comment/`);
+      setComments(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function createComments(id, newComment) {
+    try {
+      await $axios.post(`${BASE_URL}/post/${id}/comment/`, newComment);
+      getComments(id);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function deleteComments(id) {
+    try {
+      await $axios.delete(`${BASE_URL}/post/${id}/comment/`);
+      getHotel();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const value = {
     products: state.products,
     products2: state.products2,
@@ -206,6 +235,10 @@ const ProductContext = ({ children }) => {
     editTour,
     deleteHotel,
     editHotel,
+    comments,
+    getComments,
+    createComments,
+    deleteComments,
   };
   return (
     <productContexts.Provider value={value}>
