@@ -15,6 +15,7 @@ import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContexts";
+import LiveSearch from "../components/LiveSearch";
 
 export default function PrimarySearchAppBar() {
   const { user, logout, isAdmin } = useAuthContext();
@@ -25,6 +26,8 @@ export default function PrimarySearchAppBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const livesearch = LiveSearch();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -95,6 +98,7 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+
       <MenuItem onClick={() => navigate("/")}>
         <IconButton
           size="large"
@@ -132,21 +136,86 @@ export default function PrimarySearchAppBar() {
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
+
+      {!user ? (
+        <MenuItem component={Link} to="/auth">
+          <p>Login</p>
+        </MenuItem>
+      ) : (
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            logout();
+          }}
+
         >
-          <Badge badgeContent={4} color="error">
-            <FavoriteIcon />
-          </Badge>
-        </IconButton>
-        <p>Favorite</p>
-      </MenuItem>
-      <MenuItem onClick={() => navigate("/add")}>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <AddCircleIcon />
-          </Badge>
-        </IconButton>
-        <p>Add</p>
-      </MenuItem>
+          <MenuItem onClick={() => navigate("/")}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="primary-search-account-menu"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <p>Homepage</p>
+          </MenuItem>
+          <MenuItem onClick={() => navigate("/hotel")}>
+            <IconButton
+              size="large"
+              aria-label="show 4 new mails"
+              color="inherit"
+            >
+              <Badge badgeContent={4} color="error">
+                <NightShelterIcon />
+              </Badge>
+            </IconButton>
+            <p>Hotels</p>
+          </MenuItem>
+          <MenuItem onClick={() => navigate("/tour")}>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={17} color="error">
+                <ExploreIcon />
+              </Badge>
+            </IconButton>
+            <p>Tours</p>
+          </MenuItem>
+          <MenuItem onClick={() => navigate("/home")}>
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={4} color="error">
+                <FavoriteIcon />
+              </Badge>
+            </IconButton>
+            <p>Favorite</p>
+          </MenuItem>
+          <p>Logout</p>
+        </MenuItem>
+      )}
+      {!isAdmin ? (
+        <MenuItem onClick={() => navigate("/add")}>
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <AddCircleIcon />
+            </Badge>
+          </IconButton>
+          <p>Add</p>
+        </MenuItem>
+      ) : (
+        ""
+      )}
     </Menu>
   );
 
@@ -167,6 +236,7 @@ export default function PrimarySearchAppBar() {
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <img
+              onClick={() => navigate("/home")}
               style={{ width: "50px" }}
               src="https://freepngimg.com/thumb/sunrise/33996-5-sunrise-clipart-thumb.png"
               alt=""
@@ -221,22 +291,21 @@ export default function PrimarySearchAppBar() {
                 <NightShelterIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            ></IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={logout}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+
+            {!user ? (
+              <MenuItem component={Link} to="/auth">
+                Login
+              </MenuItem>
+            ) : (
+              <MenuItem
+                onClick={() => {
+                  handleMenuClose();
+                  logout();
+                }}
+              >
+                Logout
+              </MenuItem>
+            )}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton

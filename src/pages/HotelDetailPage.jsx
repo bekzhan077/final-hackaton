@@ -3,13 +3,12 @@ import { useParams } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
 import axios from "axios";
 
-const TourDetailPage = () => {
+const HotelDetailPage = () => {
   const { id } = useParams();
-  const { getTour } = useProductContext();
+  const { getHotel } = useProductContext();
   const [itemData, setItemData] = useState(null);
 
   useEffect(() => {
-    // Здесь выполняется запрос на сервер для получения данных о туре по его id
     axios
       .get(`https://app.kayakta.pp.ua/post/${id}/`)
       .then((response) => {
@@ -24,11 +23,14 @@ const TourDetailPage = () => {
     return <div>Loading...</div>;
   }
 
+  console.log(itemData);
+
   return (
     <div>
       <h1>{itemData.title}</h1>
       <h2>{itemData.price}</h2>
       <p>{itemData.body}</p>
+      <p>{itemData.price}</p>
 
       <div className="images-container">
         {itemData.images.map((image) => (
@@ -39,4 +41,4 @@ const TourDetailPage = () => {
   );
 };
 
-export default TourDetailPage;
+export default HotelDetailPage;
