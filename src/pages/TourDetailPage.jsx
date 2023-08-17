@@ -35,7 +35,7 @@ const TourDetailPage = () => {
   return (
     <div className="hotel-detail-container">
       <h1 className="hotel-title">{itemData.title}</h1>
-      <h2 className="hotel-price">{itemData.price}</h2>
+      <h2 className="hotel-price">{itemData.price}$</h2>
       <p className="hotel-body">{itemData.body}</p>
 
       <div className="images-container">

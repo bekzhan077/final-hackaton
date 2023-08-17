@@ -34,6 +34,12 @@ const TourItem = ({ item }) => {
             color="primary"
             component={Link}
             to={`/detail/${item.id}`}
+            sx={{
+              backgroundColor: "green",
+              color: "white",
+              border: "none",
+              fontWeight: 600,
+            }}
           >
             View Details
           </Button>
@@ -41,11 +47,24 @@ const TourItem = ({ item }) => {
             variant="outlined"
             color="primary"
             onClick={() => deleteTour(item.id)}
+            sx={{
+              backgroundColor: "red",
+              color: "white",
+              marginLeft: "10px",
+              fontWeight: 600,
+              border: "none",
+            }}
           >
             Delete
           </Button>
           <Button
-            sx={{ mt: 1 }}
+            sx={{
+              mt: 1,
+              backgroundColor: "#0000FF",
+              color: "white",
+              fontWeight: 600,
+              border: "none",
+            }}
             variant="outlined"
             color="primary"
             onClick={() => navigate(`/touredit/${item.id}`)}
