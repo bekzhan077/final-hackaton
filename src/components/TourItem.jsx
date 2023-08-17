@@ -3,10 +3,14 @@ import "../styles/TourItem.css";
 import { Box, Button } from "@mui/material";
 import { useProductContext } from "../contexts/ProductContext";
 import { Link, useNavigate } from "react-router-dom";
+import { useCartContext } from "../contexts/CartContext";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 
 const TourItem = ({ item }) => {
   const { getTour, deleteTour, getOneTour } = useProductContext();
-
+  const { isAlreadyIsCart, addPostToCart, deleteDishFromCart } =
+    useCartContext();
   const navigate = useNavigate();
 
   useEffect(() => {

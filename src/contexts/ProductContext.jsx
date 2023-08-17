@@ -1,8 +1,8 @@
-import { async } from "q";
+// import { async } from "q";
 import React, {
   createContext,
   useContext,
-  useEffect,
+  // useEffect,
   useReducer,
   useState,
 } from "react";
@@ -82,7 +82,7 @@ const ProductContext = ({ children }) => {
       );
 
       const totalCount = Math.ceil(data.count / 10);
-      console.log(data.count);
+      console.log(data);
 
       dispatch({
         type: "totalPages",
@@ -94,7 +94,7 @@ const ProductContext = ({ children }) => {
         payload: data.results,
       });
     } catch (e) {
-      console.log(e);
+      console.log(e, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
     }
   }
 

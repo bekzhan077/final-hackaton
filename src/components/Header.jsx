@@ -3,16 +3,15 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import NightShelterIcon from "@mui/icons-material/NightShelter";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import ExploreIcon from "@mui/icons-material/Explore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContexts";
@@ -81,6 +80,7 @@ export default function PrimarySearchAppBar() {
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
+      sx={{ width: "100%" }}
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: "top",
@@ -122,7 +122,7 @@ export default function PrimarySearchAppBar() {
           color="inherit"
         >
           <Badge badgeContent={17} color="error">
-            <ExploreIcon />
+            <AirplanemodeActiveIcon />
           </Badge>
         </IconButton>
         <p>Tours</p>
@@ -156,6 +156,7 @@ export default function PrimarySearchAppBar() {
         position="static"
         sx={{
           backgroundImage: "linear-gradient(163deg, #00ff75 0%, #3700ff 100%)",
+          width: "100%",
         }}
       >
         <Toolbar>
@@ -206,7 +207,7 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
               <Badge badgeContent={4} color="error">
-                <ExploreIcon />
+                <AirplanemodeActiveIcon />
               </Badge>
             </IconButton>
 
