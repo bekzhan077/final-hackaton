@@ -9,13 +9,13 @@ import Menu from "@mui/material/Menu";
 import NightShelterIcon from "@mui/icons-material/NightShelter";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContexts";
 import LiveSearch from "../components/LiveSearch";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function PrimarySearchAppBar() {
   const { user, logout, isAdmin } = useAuthContext();
@@ -173,10 +173,10 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
               <Badge badgeContent={4} color="error">
-                <FavoriteIcon />
+                <AddShoppingCartIcon />
               </Badge>
             </IconButton>
-            <p>Favorite</p>
+            <p>Buy</p>
           </MenuItem>
           <p>Logout</p>
         </MenuItem>
@@ -234,7 +234,7 @@ export default function PrimarySearchAppBar() {
                 aria-label="show 4 new mails"
                 color="inherit"
               >
-                <Badge badgeContent={4} color="error">
+                <Badge color="error">
                   <AddCircleIcon />
                 </Badge>
               </IconButton>
@@ -248,8 +248,8 @@ export default function PrimarySearchAppBar() {
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={4} color="error">
-                <FavoriteIcon />
+              <Badge color="error">
+                <AddShoppingCartIcon />
               </Badge>
             </IconButton>
             <IconButton
@@ -258,7 +258,7 @@ export default function PrimarySearchAppBar() {
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={4} color="error">
+              <Badge color="error">
                 <AirplanemodeActiveIcon />
               </Badge>
             </IconButton>
@@ -269,7 +269,7 @@ export default function PrimarySearchAppBar() {
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={4} color="error">
+              <Badge color="error">
                 <NightShelterIcon />
               </Badge>
             </IconButton>

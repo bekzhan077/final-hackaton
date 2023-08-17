@@ -24,9 +24,19 @@
   gap: 10px;
 }
 
+.images-container img {
+  width: 300px;
+}
+
 .hotel-image {
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.hotel-image img {
+  max-width: 250px;
+  max-height: 120px;
   object-fit: cover;
 }
 

@@ -1,3 +1,7 @@
+.images-container img {
+  width: 200px;
+}
+
 @media (max-width: 768px) {
   /* Медиа-запрос для разрешения до 768px */
   div {
