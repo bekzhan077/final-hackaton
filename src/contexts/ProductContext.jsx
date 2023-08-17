@@ -25,6 +25,8 @@ const initState = {
   hotel: null,
   categories: [],
   totalPages: 1,
+  likes: 0,
+  isLiked: false,
 };
 
 function reducer(state, action) {
@@ -43,6 +45,12 @@ function reducer(state, action) {
       return { ...state, tour: action.payload };
     case "hotel":
       return { ...state, hotel: action.payload };
+    case "likes":
+      return { ...state, likes: action.payload };
+
+    case "isLiked":
+      return { ...state, isLiked: action.payload };
+
     default:
       return state;
   }
@@ -70,6 +78,18 @@ const ProductContext = ({ children }) => {
         type: "products",
         payload: data.results,
       });
+
+      dispatch({
+        type: "likes",
+        payload: data["quantity of likes"],
+      });
+
+      dispatch({
+        type: "isLiked",
+        payload: data.is_liked,
+      });
+
+      console.log(data);
     } catch (e) {
       console.log(e);
     }
@@ -85,7 +105,6 @@ const ProductContext = ({ children }) => {
 
       console.log(data);
 
-
       dispatch({
         type: "totalPages",
         payload: totalCount,
@@ -96,7 +115,7 @@ const ProductContext = ({ children }) => {
         payload: data.results,
       });
     } catch (e) {
-      console.log(e, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+      console.log(e);
     }
   }
 
@@ -148,6 +167,7 @@ const ProductContext = ({ children }) => {
         type: "tour",
         payload: data,
       });
+      console.log(data);
     } catch (e) {
       console.log(e);
     }
@@ -215,6 +235,15 @@ const ProductContext = ({ children }) => {
     }
   }
 
+  async function like(title, id) {
+    try {
+      const { data } = await $axios.post(`${BASE_URL}/post/${id}/like/`, title);
+      getTour();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const value = {
     products: state.products,
     products2: state.products2,
@@ -239,6 +268,7 @@ const ProductContext = ({ children }) => {
     getComments,
     createComments,
     deleteComments,
+    like,
   };
   return (
     <productContexts.Provider value={value}>
