@@ -134,6 +134,30 @@ const EditHotelPage = () => {
                 name="preview"
                 onChange={handleChange}
               />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                type="file"
+                name="images"
+                onChange={handleChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                type="file"
+                name="images"
+                onChange={handleChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                type="file"
+                name="images"
+                onChange={handleChange}
+              />
               <Button
                 type="submit"
                 fullWidth

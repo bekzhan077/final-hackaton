@@ -50,7 +50,7 @@ const EditTourPage = () => {
     }
   }
 
-  function handleChangeImg1(e) {
+  function handleChange(e) {
     if (e.target.name === "images") {
       setFormValue({
         ...formValue,
@@ -148,6 +148,30 @@ const EditTourPage = () => {
                 fullWidth
                 type="file"
                 name="preview"
+                onChange={handleChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                type="file"
+                name="images"
+                onChange={handleChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                type="file"
+                name="images"
+                onChange={handleChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                type="file"
+                name="images"
                 onChange={handleChange}
               />
               <Button

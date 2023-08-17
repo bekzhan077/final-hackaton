@@ -15,6 +15,7 @@ import HotelDetailPage from "../pages/HotelDetailPage";
 import EditTourPage from "../pages/EditTourPage";
 import EditHotelPage from "../pages/EditHotelPage";
 import CartPage from "./../pages/CartPage";
+import PaymentPage from "../pages/PaymentPage";
 
 const MainRoutes = () => {
   return (
@@ -28,6 +29,7 @@ const MainRoutes = () => {
         <Route path="/touredit/:id" element={<EditTourPage />} />
         <Route path="/hoteledit/:id" element={<EditHotelPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="pay" element={<PaymentPage />} />
       </Route>
       <Route path="/" element={<WelcomePage />} />
       <Route path="/auth" element={<AuthPage />} />
