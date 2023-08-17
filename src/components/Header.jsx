@@ -16,6 +16,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useAuthContext } from "../contexts/AuthContexts";
+import LiveSearch from "../components/LiveSearch";
 
 export default function PrimarySearchAppBar() {
   const { user, logout, isAdmin } = useAuthContext();
@@ -26,6 +27,8 @@ export default function PrimarySearchAppBar() {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const livesearch = LiveSearch();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -166,6 +169,7 @@ export default function PrimarySearchAppBar() {
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <img
+              onClick={() => navigate("/home")}
               style={{ width: "50px" }}
               src="https://freepngimg.com/thumb/sunrise/33996-5-sunrise-clipart-thumb.png"
               alt=""

@@ -8,9 +8,7 @@ import Pagination from "../components/Pagination";
 import { useSearchParams } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContext";
 
-
 const HotelPage = () => {
-
   const [hotelData, setHotelData] = useState([]);
   const { getHotel } = useProductContext();
   const [searchParams] = useSearchParams();
@@ -36,6 +34,7 @@ const HotelPage = () => {
   return (
     <Box>
       <Header />
+
       <div
         style={{
           backgroundImage: `url("https://media.gadventures.com/media-server/dynamic/blogs/posts/dan-audrey/2017/07/kyBurn.jpg")`,

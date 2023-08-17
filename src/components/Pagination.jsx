@@ -17,12 +17,21 @@ const Pagination = () => {
   }, [page]);
 
   return (
-    <MuiPagination
-      count={totalPages}
-      page={page}
-      onChange={(_, value) => setPage(value)}
-      color="primary"
-    />
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-end",
+        height: "100%",
+      }}
+    >
+      <MuiPagination
+        count={totalPages}
+        page={page}
+        onChange={(_, value) => setPage(value)}
+        color="primary"
+      />
+    </div>
   );
 };
 
